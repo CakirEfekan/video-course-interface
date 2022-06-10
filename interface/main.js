@@ -56,12 +56,17 @@ docReady(() => {
 
     const videos = document.querySelectorAll("video");
     videos.forEach((video) => {
-        video.currentTime = getStorage(video.getAttribute("id") + "-currentTime");
+        video.currentTime = getStorage(
+            courseName + "-" + video.getAttribute("id") + "-currentTime"
+        );
         addListeners(video, ["focusin", "playing", "play"], () => {
             focusVideo(video);
         });
         video.addEventListener("timeupdate", (e) => {
-            setStorage(video.getAttribute("id") + "-currentTime", video.currentTime);
+            setStorage(
+                courseName + "-" + video.getAttribute("id") + "-currentTime",
+                video.currentTime
+            );
         });
         video.addEventListener("focusout", (e) => {
             document.body.style.background = "#fff";

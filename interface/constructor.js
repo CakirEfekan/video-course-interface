@@ -18,17 +18,17 @@ for (let index = 1; index <= 37; index++) {
     video.setAttribute("id", index);
     video.setAttribute("preload", "none");
 
-    if (getStorage(name) == null) {
+    if (getStorage(courseName + "-" + name) == null) {
         video.setAttribute("controls", "");
     } else {
         video.style.filter = "grayscale(100) blur(5px)";
-        resetVideo(video, name);
+        resetVideo(video, courseName + "-" + name);
         video.setAttribute("watched", "true");
     }
     video.addEventListener(
         "ended",
         () => {
-            setStorage(name, "watched");
+            setStorage(courseName + "-" + name, "watched");
             video.setAttribute("watched", "true");
             closeFullscreen(video);
             videoNumber = 1 + parseInt(video.getAttribute("id"));
